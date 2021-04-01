@@ -14,6 +14,7 @@ import java.awt.Graphics;
  */
 public class GraphicsEngine extends JComponent {
     VertexManager vertexManager = new VertexManager();
+    
 
     public GraphicsEngine()
     {

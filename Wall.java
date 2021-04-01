@@ -3,6 +3,11 @@ public class Wall {
     Vertex point1;
     Vertex point2;
     final int WIDTH = 15; 
+    public static final int WALLHIEGHT = 60;
+
+    /*
+     * represents a wall of the building. Represented by two verticies.
+     */
     public Wall(Vertex p1, Vertex p2)
     {
         point1 = p1;
@@ -18,6 +23,51 @@ public class Wall {
     {
         drawOffsetLine(g, point1.xPos, point1.yPos, point2.xPos, point2.yPos, WIDTH/2);
         drawOffsetLine(g, point1.xPos, point1.yPos, point2.xPos, point2.yPos, -WIDTH/2);
+    }
+
+    /*
+     * The following functions project our 2 point wall into 4 points ( to add thickness).
+     * These functions use trig laws to calculate relevant points. Each point has an x and a y
+     */
+    public int getFrontLeftPointX()
+    {
+        double alpha = Math.atan2(point2.yPos-point1.yPos, point2.xPos- point1.xPos) - Math.PI/2; //90 degree offset of angle of line
+        return (int)(point1.xPos + WIDTH/2 * Math.cos(alpha));
+    }
+    public int getFrontLeftPointY()
+    {
+        double alpha = Math.atan2(point2.yPos-point1.yPos, point2.xPos- point1.xPos) - Math.PI/2; //90 degree offset of angle of line
+        return (int)(point1.yPos + WIDTH/2 * Math.sin(alpha));
+    }
+    public int getFrontRightPointX()
+    {
+        double alpha = Math.atan2(point2.yPos-point1.yPos, point2.xPos- point1.xPos) - Math.PI/2; //90 degree offset of angle of line
+        return (int)(point2.xPos + WIDTH/2 * Math.cos(alpha));
+    }
+    public int getFrontRightPointY()
+    {
+        double alpha = Math.atan2(point2.yPos-point1.yPos, point2.xPos- point1.xPos) - Math.PI/2; //90 degree offset of angle of line
+        return (int)(point2.yPos + WIDTH/2 * Math.sin(alpha));
+    }
+    public int getBackLeftPointX()
+    {
+        double alpha = Math.atan2(point2.yPos-point1.yPos, point2.xPos- point1.xPos) - Math.PI/2; //90 degree offset of angle of line
+        return (int)(point1.xPos - WIDTH/2 * Math.cos(alpha));
+    }
+    public int getBackLeftPointY()
+    {
+        double alpha = Math.atan2(point2.yPos-point1.yPos, point2.xPos- point1.xPos) - Math.PI/2; //90 degree offset of angle of line
+        return (int)(point1.yPos - WIDTH/2 * Math.sin(alpha));
+    }
+    public int getBackRightPointX()
+    {
+        double alpha = Math.atan2(point2.yPos-point1.yPos, point2.xPos- point1.xPos) - Math.PI/2; //90 degree offset of angle of line
+        return (int)(point2.xPos - WIDTH/2 * Math.cos(alpha));
+    }
+    public int getBackRightPointY()
+    {
+        double alpha = Math.atan2(point2.yPos-point1.yPos, point2.xPos- point1.xPos) - Math.PI/2; //90 degree offset of angle of line
+        return (int)(point2.yPos - WIDTH/2 * Math.sin(alpha));
     }
 
     /*

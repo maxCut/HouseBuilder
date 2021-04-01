@@ -10,12 +10,14 @@ public class VertexManager {
 
     private Vertex selectedVertex;
     private WallManager wallManager;
+    GraphicsThreeD engine_3d = new GraphicsThreeD();
 
 
     public VertexManager()
     {
         wallManager = new WallManager();
     }
+
     public boolean isVertexSelected()
     {
         return selectedVertex==null;
@@ -46,8 +48,7 @@ public class VertexManager {
                 }
                 else{
                     Vertex v = new Vertex(x, y);
-                    verticies.add(v);
-                    wallManager.AddPoint(v);
+                    AddVertex(v);
                     break;
                 }
             case Delete:
@@ -84,6 +85,20 @@ public class VertexManager {
             }
         }
     }
+
+    public void MoveVertex(Vertex v, int x, int y)
+    {
+        v.update(x, y);
+        engine_3d.redraw(wallManager.getWalls());
+    }
+
+    public void AddVertex(Vertex v)
+    {
+        verticies.add(v);
+        wallManager.AddPoint(v);
+        engine_3d.redraw(wallManager.getWalls());
+    }
+
     public void draw(Graphics g)
     {
         for (Vertex vertex : verticies) {

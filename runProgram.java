@@ -4,6 +4,5 @@ public class RunProgram
     {
         GraphicsEngine engine = new GraphicsEngine();
         engine.Start();
-        GraphicsThreeD engine_3d = new GraphicsThreeD();
     }
 }

@@ -18,6 +18,15 @@ public class WallManager {
         }
 
     }
+
+    public ArrayList<Wall> getWalls()
+    {
+        return walls;
+    }
+    public void addWall(Wall w)
+    {
+        walls.add(w);
+    }
     
     public void draw(Graphics g)
     {
