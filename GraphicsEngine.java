@@ -3,6 +3,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.event.MouseAdapter;
@@ -12,20 +13,44 @@ import java.awt.Graphics;
  * This class handles u/i. Graphics will be passed to relevant graphics objects
  */
 public class GraphicsEngine extends JComponent {
+    VertexManager vertexManager = new VertexManager();
 
     public GraphicsEngine()
     {
         addMouseListener(new MouseAdapter()
         {
             /*
-             * This event is fired when the left mouse button is clicked. Calls all subscribed mouse events 
+             * This event is fired when mouse button is clicked. Calls all subscribed mouse events 
              */
             public void mouseClicked(MouseEvent e)
             {
-    
+                int button = e.getButton();
+                ClickAction action = ClickAction.None;
+                if(button == MouseEvent.BUTTON1)
+                {
+                    action = ClickAction.Select;
+                }
+                else if(button==MouseEvent.BUTTON2){                    
+                    action = ClickAction.Delete;
+                }
+                else if(button==MouseEvent.BUTTON3)
+                {
+                    action = ClickAction.Create;
+                }
+                vertexManager.ClickEvent(e.getX(), e.getY(), action);
             }
 
         });
+        /*
+         * This event is fired when mouse is moved. Calls all subscribed mouse events 
+         */
+        addMouseMotionListener(new MouseMotionAdapter()
+            {
+                public void mouseMoved(MouseEvent e)
+                {
+                    vertexManager.MoveEvent(e.getX(), e.getY());
+                }
+            });
     }
 
     /*
@@ -61,6 +86,6 @@ public class GraphicsEngine extends JComponent {
      */
     public void paintComponent(Graphics g)
     {
-        g.drawRect(100, 100, 100, 100);
+        vertexManager.draw(g);
     }
 }
