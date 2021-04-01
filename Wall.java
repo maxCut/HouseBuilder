@@ -1,5 +1,4 @@
 import java.awt.Graphics;
-import java.util.Vector;
 public class Wall {
     Vertex point1;
     Vertex point2;
