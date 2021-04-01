@@ -1,8 +1,8 @@
-public class runProgram 
+public class RunProgram 
 {
     public static void main(String[] args)
     {
-        System.out.println("test");
+        GraphicsEngine engine = new GraphicsEngine();
+        engine.Start();
     }
-
 }
